@@ -58,7 +58,7 @@ export default {
       }
     }
     const cancel = () => {
-      context.emit('cancel')
+      props.cancel?.()
       close()
     }
     return {
@@ -68,7 +68,7 @@ export default {
       cancel
     }
   }
-};
+}; 
 </script>
 
 <style lang="scss">
