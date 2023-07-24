@@ -1,8 +1,10 @@
 <template>
+<template v-if="visible">
   <div class="wind-dialog-overlay"></div>
   <div class="wind-dialog-wrapper">
     <div class="wind-dialog">
-      <header>标题
+      <header>
+        标题
         <span class="wind-dialog-close"></span>
       </header>
       <main>
@@ -15,11 +17,18 @@
       </footer>
     </div>
   </div>
-</template>  
+</template> 
+</template>
 
 <script lang="ts">
 import Button from "./Button.vue";
 export default {
+  props: {
+    visible: {
+      type: Boolean,
+      default: false
+    }
+  },
   components: {
     Button,
   },
