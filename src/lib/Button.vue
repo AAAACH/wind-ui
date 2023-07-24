@@ -1,5 +1,5 @@
 <template>
-  <button class="wind-button" :class="classes">
+  <button class="wind-button" :class="classes" :disabled="disabled">
     <slot />
   </button>
 </template>
@@ -19,6 +19,10 @@ export default {
     level: {
       type: String,
       default: "normal",
+    },
+    disabled: {
+      type: Boolean,
+      default: false,
     },
   },
   setup(props) {
@@ -42,6 +46,7 @@ $color: #333;
 $blue: #40a9ff;
 $radius: 4px;
 $red: red;
+$grey: grey;
 .wind-button {
   box-sizing: border-box;
   height: $h;
@@ -144,6 +149,21 @@ $red: red;
       &:focus {
         color: darken($red, 10%);
       }
+    }
+  }
+  &.wind-theme-button {
+    &[disabled] {
+      cursor: not-allowed;
+      color: $grey;
+      &:hover {
+        border-color: $grey;
+      }
+    }
+  }
+  &.wind-theme-link, &.wind-theme-text {
+    &[disabled] {
+      cursor: not-allowed;
+      color: $grey;
     }
   }
 }
