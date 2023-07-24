@@ -5,7 +5,7 @@
     <div class="wind-tabs-nav-indicator"  ref="indicator"></div>
   </div>
   <div class="wind-tabs-content">
-    <component class="wind-tabs-content-item" :class="{selected: c.props.title === selected }" v-for="c in defaults" :is="c" />
+    <component :is="current" :key="current.props.title" />
   </div>
 </div>
 </template>
@@ -51,6 +51,10 @@ export default {
         throw new Error('Tabs 子标签必须是 Tab')
       }
     })
+
+    const current = computed(() => {
+      return defaults.find(tag => tag.props.title === props.selected)
+    })
     
     const titles = defaults.map((tag) => {
       return tag.props.title
@@ -61,6 +65,7 @@ export default {
     }
 
     return {
+      current,
       defaults,
       titles,
       select,
@@ -105,14 +110,6 @@ $border-color: #d9d9d9;
   }
   &-content {
     padding: 8px 0;
-
-    &-item {
-      display: none;
-      
-      &.selected {
-        display: block;
-      }
-    }
   }
 }
 </style>
